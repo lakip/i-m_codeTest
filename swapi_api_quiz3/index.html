@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="starsWars">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0">
+  <title>Star Wars Characters</title>
+
+  <!-- CSS  -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
+  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <link href="https://stackpath.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet" type="text/css" />
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js"></script>
+</head>
+<body class="blue" ng-controller="charactersController">
+
+  <!-- HEADER -->
+  <div class="section no-pad-bot " id="index-banner">
+    <div class="container">
+      <br><br>
+      <h1 class="header center  blue-text text-lighten-5"><b>Star Wars Characters</b></h1>
+    </div>
+  </div>
+
+
+  <div class="section blue accent-1">
+    <div class="container">
+
+      <ul class="collection z-depth-1">
+        <div>
+              <table class="table table-bordered" class="collection-item">
+                <thead>
+                    <tr>
+                      <th>name</th>
+                      <th>gender</th>
+                      <th>films</th>
+                      <th colspan="2">action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                  <tr ng-repeat="x in myCharacters.results">
+
+                    <td>{{x.name}}</td>
+                    <td>{{x.gender}}</td>
+                    <td>{{x.mass}}</td>
+                    <td>
+                          <input type="button" value="view"  onclick="window.open(this.href); return false;" onkeypress="window.open(this.href); return true;"/>
+                    <td>
+                        <div class="heart" title="marks as favourite" a href="#!" class="secondary-content" ng-click="addCharacter(x.name)">
+                          </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+
+        <!-- </li> -->
+      </ul>
+      <!-- Count favourite -->
+      <p class="center blue-text text-lighten-5">
+        You have <b>{{countDone()}}</b>
+        <span ng-hide="countDone() === 1" >s</span>
+        favourite Characters
+      </p>
+
+      <!-- Tasks -->
+      <ul class="collection z-depth-1">
+        <li class="collection-item" ng-repeat="characterItem in char track by $index">
+          <div>
+            <input type="checkbox" id="{{$index}}" class="left-align" ng-model="characterItem.done" ng-click="countDone()"/>
+            <label for="{{$index}}">
+              {{characterItem.text}}
+            </label>
+            <a href="#!" class="secondary-content" ng-click="deleteCharacter($index)">x</a>
+          </div>
+        </li>
+      </ul>
+
+
+    </div>
+  </div>
+
+  <!--  Scripts-->
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
+  <script src="js/app.js"></script>
+
+
+</body>
+</html>
